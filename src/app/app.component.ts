@@ -10,6 +10,7 @@ import { InstructorService } from './services/instructor.service';
 import { EventService } from './services/event.service';
 import { Event } from './models/event';
 import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
 
   instructors: Instructor[];
   instructor: Instructor;
+  overal: number;
 
   events: Event[];
   event: Event = {
@@ -31,12 +33,15 @@ export class AppComponent implements OnInit {
     start: null,
     end: null
   };
+  eventItem: Event;
 
   options: any;
 
   displayAssigDialog: boolean = false;
+  eventDialogTable: boolean = false;
+  submitted: boolean = true;
 
-  constructor(private instructorService: InstructorService, private eventServices: EventService, private messageService: MessageService) { }
+  constructor(private instructorService: InstructorService, private eventServices: EventService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.eventServices.findAll().subscribe(events => {
@@ -67,6 +72,49 @@ export class AppComponent implements OnInit {
         console.error(error);
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al intentar asignar el evento' });
       });
+  }
 
+  getOverall(idInstructor: string) {
+    this.instructorService.getOverall(idInstructor).subscribe(result => {
+      this.overal = result;
+    });
+  }
+
+  editEvent(eventEdit: Event) {
+    this.eventItem = {
+      id: eventEdit.id,
+      title: eventEdit.title,
+      description: eventEdit.description,
+      start: new Date(eventEdit.start),
+      end: new Date(eventEdit.end)
+    };
+    this.eventDialogTable = true;
+  }
+
+  saveUpdated() {
+    this.submitted = true;
+    this.eventServices.updateEvent(this.instructor.id, this.eventItem.id, this.eventItem).subscribe();
+    this.instructorService.getInstructor(this.instructor.id).subscribe(instructor => {
+      this.instructor = instructor;
+      this.events = this.instructor.events;
+    });
+    this.events = [...this.events];
+    this.eventDialogTable = false;
+  }
+
+  deleteEvent(event: Event) {
+    this.confirmationService.confirm({
+      message: 'Seguro que desea eliminar el elemento?',
+      header: 'Confirmacion',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.eventServices.deleteEvent(event.id).subscribe();
+      }
+    });
+  }
+
+  hideDialog() {
+    this.eventDialogTable = false;
+    this.submitted = false;
   }
 }

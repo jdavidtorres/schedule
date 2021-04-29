@@ -1,10 +1,11 @@
 <p-toast></p-toast>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 <div class="ui-g">
   <p-panel header="Schedule" [style]="{width: '75%', margin: '0 auto'}">
     <p-tabView>
       <p-tabPanel header="Eventos">
         <p-dropdown [options]="instructors" [(ngModel)]="instructor" optionLabel="name"
-          placeholder="Select an instructor">
+          placeholder="Select an instructor" (onChange)="getOverall(instructor.id)">
         </p-dropdown>
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-3">
@@ -15,6 +16,9 @@
           </div>
           <div class="p-field p-col-12 p-md-3">
             <h5 *ngIf="instructor">{{instructor.birthday | date}}</h5>
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <h5 *ngIf="instructor">Total agendado: {{overal}} días</h5>
           </div>
         </div>
         <p-fullCalendar *ngIf="!instructor" [events]="events" [options]="options"></p-fullCalendar>
@@ -60,6 +64,74 @@
             <button pButton pRipple type="Submit" label="Guardar"></button>
           </div>
         </form>
+        <p-table *ngIf="instructor" [value]="instructor.events" [rows]="10" [rowHover]="true" dataKey="id">
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <h5 class="p-m-0">Eventos</h5>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">Nombre evento <p-sortIcon field="name"></p-sortIcon>
+              </th>
+              <th pSortableColumn="description">Descripcion</th>
+              <th pSortableColumn="start">Fecha Inicio <p-sortIcon field="start"></p-sortIcon>
+              </th>
+              <th pSortableColumn="end">Fecha Final <p-sortIcon field="end"></p-sortIcon>
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-eventItem>
+            <tr>
+              <td>{{eventItem.title}}</td>
+              <td>{{eventItem.description}}</td>
+              <td>{{eventItem.start|date}}</td>
+              <td>{{eventItem.end|date}}</td>
+              <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                  (click)="editEvent(eventItem)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deleteEvent(eventItem)"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              Total eventos: {{instructor.events ? instructor.events.length : 0 }}
+            </div>
+          </ng-template>
+        </p-table>
+        <p-dialog [(visible)]="eventDialogTable" [style]="{width: '750px'}" header="Detalles de evento" [modal]="true"
+          styleClass="p-fluid">
+          <ng-template pTemplate="content">
+            <div class="p-field">
+              <label for="name">Titulo</label>
+              <input type="text" pInputText id="title" [(ngModel)]="eventItem.title" required autofocus />
+              <small class="p-error" *ngIf="submitted && !eventItem.title">Titulo es requerido.</small>
+            </div>
+            <div class="p-field">
+              <label for="description">Descripcion</label>
+              <input type="text" pInputText id="description" [(ngModel)]="eventItem.description" />
+            </div>
+            <div class="p-field">
+              <label for="startEvent">Fecha inicio</label>
+              <input type="text" pInputText id="startEvent" [(ngModel)]="eventItem.start" required />
+              <small class="p-error" *ngIf="submitted && !eventItem.start">Fecha inicio es requerido.</small>
+            </div>
+            <div class="p-field">
+              <label for="endEvent">Fecha finalizacion</label>
+              <input type="text" pInputText id="endEvent" [(ngModel)]="eventItem.end" required />
+              <small class="p-error" *ngIf="submitted && !eventItem.end">Fecha fin es requerido.</small>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+              (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+              (click)="saveUpdated()"></button>
+          </ng-template>
+        </p-dialog>
       </p-tabPanel>
       <p-tabPanel header="Instructores">
         <div id="form-instructor" class="card">

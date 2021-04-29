@@ -29,4 +29,28 @@ export class InstructorService {
     }
     return this.http.post(this.baseEndpoint + '/assign-event', event, options);
   }
+
+  public getOverall(idInstructor: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    let params = new HttpParams();
+    params = params.append("idInstructor", idInstructor);
+    const options = {
+      headers: headers,
+      params: params
+    }
+    return this.http.get<any>(this.baseEndpoint + '/overall', options);
+  }
+
+  public getInstructor(idInstructor: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    let params = new HttpParams();
+    params = params.append("idInstructor", idInstructor);
+    const options = {
+      headers: headers,
+      params: params
+    }
+    return this.http.get<any>(this.baseEndpoint + '/instructor', options);
+  }
 }
