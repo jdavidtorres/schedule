@@ -138,22 +138,29 @@
           <h5>Guardar instructor</h5>
           <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-12 p-md-6">
-              <label for="fieldId" class="p-col-fixed" style="width: 100px;">Nombre</label>
+              <label for="instructorName" class="p-col-fixed" style="width: 100px;">Nombre</label>
               <div class="p-col">
-                <input id="fieldId" type="text" pInputText>
+                <input id="instructorName" inputId="instructorName" type="text" pInputText
+                  [(ngModel)]="newInstructor.name">
               </div>
             </div>
             <div class="p-field p-col-12 p-md-6">
-              <label for="lastname" class="p-col-fixed" style="width: 100px;">Apellido</label>
+              <label for="instructorLastname" class="p-col-fixed" style="width: 100px;">Apellido</label>
               <div class="p-col">
-                <input id="lastname" type="text" pInputText>
+                <input id="instructorLastname" inputId="instructorLastname" type="text" pInputText
+                  [(ngModel)]="newInstructor.lastname">
               </div>
             </div>
             <div class="p-field p-col-12 p-md-3">
-              <label for="birthday" class="p-col-fixed">Fecha nacimiento</label>
-              <div class="p-col">
-                <p-calendar id="birthday"></p-calendar>
-              </div>
+              <label for="birthday">Fecha nacimiento</label>
+              <p-calendar [(ngModel)]="newInstructor.birthday" [monthNavigator]="true" [yearNavigator]="true"
+                yearRange="2000:2030" id="birthday" inputId="birthday"></p-calendar>
+            </div>
+            <div class="p-field p-col-12 p-md-3"></div>
+            <div class="p-field p-col-12 p-md-3"></div>
+            <div class="p-field p-col-12 p-md-3"></div>
+            <div class="p-field p-col-12 p-md-3">
+              <button pButton pRipple type="Submit" (click)="saveInstructor(newInstructor)" label="Guardar"></button>
             </div>
           </div>
         </div>

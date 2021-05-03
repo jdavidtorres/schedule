@@ -17,6 +17,16 @@ export class InstructorService {
     return this.http.get<Instructor[]>(this.baseEndpoint);
   }
 
+  public saveInstructor(instructor: Instructor): Observable<Instructor> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+
+    const options = {
+      headers: headers
+    }
+    return this.http.post<Instructor>(this.baseEndpoint, instructor, options);
+  }
+
   public assignEventToInstructor(event: Event, idInstructor: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');

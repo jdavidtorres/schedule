@@ -23,6 +23,14 @@ export class AppComponent implements OnInit {
 
   instructors: Instructor[];
   instructor: Instructor;
+  newInstructor: Instructor = {
+    id: null,
+    name: null,
+    lastname: null,
+    birthday: null,
+    events: null
+  };
+
   overal: number;
 
   events: Event[];
@@ -116,5 +124,17 @@ export class AppComponent implements OnInit {
   hideDialog() {
     this.eventDialogTable = false;
     this.submitted = false;
+  }
+
+  saveInstructor(instructor: Instructor) {
+    this.instructors.push(instructor);
+    this.instructorService.saveInstructor(instructor).subscribe();
+    this.newInstructor = {
+      id: null,
+      name: null,
+      lastname: null,
+      birthday: null,
+      events: null
+    };
   }
 }
