@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms'
+import { NgForm } from '@angular/forms'
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
   eventDialogTable: boolean = false;
   submitted: boolean = true;
 
+  maxDate: Date;
+
   constructor(private instructorService: InstructorService, private eventServices: EventService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class AppComponent implements OnInit {
     this.instructorService.findAll().subscribe(instructors => {
       this.instructors = instructors;
     });
+    this.maxDate = new Date();
   }
 
   assignEvent(fomAssign: NgForm) {
