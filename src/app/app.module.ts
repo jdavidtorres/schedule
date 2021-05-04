@@ -18,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -47,7 +48,8 @@ import { AppComponent } from './app.component';
     ToastModule,
     MessagesModule,
     MessageModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    InputMaskModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

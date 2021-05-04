@@ -29,11 +29,12 @@ export class EventService {
     return this.http.put<any>(this.baseEndpoint, eventToEdit, options);
   }
 
-  public deleteEvent(idEvent: string): Observable<any> {
+  public deleteEvent(idEvent: string, idInstructor: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     let params = new HttpParams();
     params = params.append("idEvent", idEvent);
+    params = params.append("idInstructor", idInstructor);
     const options = {
       headers: headers,
       params: params

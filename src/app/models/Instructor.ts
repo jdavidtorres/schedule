@@ -4,7 +4,7 @@ export class Instructor {
 
     id: string;
     name: string;
-    lastname: string;
+    surname: string;
     birthday: string;
     events: Event[];
 }

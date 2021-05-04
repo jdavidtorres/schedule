@@ -26,12 +26,12 @@ export class AppComponent implements OnInit {
   newInstructor: Instructor = {
     id: null,
     name: null,
-    lastname: null,
+    surname: null,
     birthday: null,
     events: null
   };
 
-  overal: number;
+  overall: number;
 
   events: Event[];
   event: Event = {
@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
 
   options: any;
 
-  displayAssigDialog: boolean = false;
   eventDialogTable: boolean = false;
   submitted: boolean = true;
 
@@ -75,19 +74,19 @@ export class AppComponent implements OnInit {
   assignEvent(fomAssign: NgForm) {
     this.instructorService.assignEventToInstructor(this.event, this.instructor.id).subscribe(
       (result: any) => {
-        this.messageService.add({ severity: 'success', summary: 'Exitoso', detail: 'Se asigno el evento al instructor' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Event created' });
         fomAssign.reset();
       },
       error => {
-        console.error("Error al intentar asignar el evento");
+        console.error("Something went wrong");
         console.error(error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al intentar asignar el evento' });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
       });
   }
 
   getOverall(idInstructor: string) {
     this.instructorService.getOverall(idInstructor).subscribe(result => {
-      this.overal = result;
+      this.overall = result;
     });
   }
 
@@ -96,14 +95,18 @@ export class AppComponent implements OnInit {
       id: eventEdit.id,
       title: eventEdit.title,
       description: eventEdit.description,
-      start: new Date(eventEdit.start),
-      end: new Date(eventEdit.end)
+      start: eventEdit.start,
+      end: eventEdit.end
     };
     this.eventDialogTable = true;
   }
 
-  saveUpdated() {
+  saveUpdated(eventDialog: Event) {
     this.submitted = true;
+    console.log(this.eventItem.title);
+    console.log(this.eventItem.description);
+    console.log(eventDialog.start);
+    console.log(eventDialog.end);
     this.eventServices.updateEvent(this.instructor.id, this.eventItem.id, this.eventItem).subscribe();
     this.instructorService.getInstructor(this.instructor.id).subscribe(instructor => {
       this.instructor = instructor;
@@ -115,11 +118,19 @@ export class AppComponent implements OnInit {
 
   deleteEvent(event: Event) {
     this.confirmationService.confirm({
-      message: 'Seguro que desea eliminar el elemento?',
-      header: 'Confirmacion',
+      message: 'Are you sure you want to delete it?',
+      header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.eventServices.deleteEvent(event.id).subscribe();
+        this.eventServices.deleteEvent(event.id, this.instructor.id).subscribe(
+          (result: any) => {
+            this.instructorService.getInstructor(this.instructor.id).subscribe(instructor => {
+              this.instructor = instructor;
+              this.events = this.instructor.events;
+            });
+          }
+        );
+        this.events = this.instructor.events;
       }
     });
   }
@@ -135,7 +146,7 @@ export class AppComponent implements OnInit {
     this.newInstructor = {
       id: null,
       name: null,
-      lastname: null,
+      surname: null,
       birthday: null,
       events: null
     };
