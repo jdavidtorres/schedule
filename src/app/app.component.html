@@ -18,7 +18,7 @@
             <h5 *ngIf="instructor">{{instructor.birthday | date}}</h5>
           </div>
           <div class="p-field p-col-12 p-md-3">
-            <h5 *ngIf="instructor">Overall: {{overall}} days</h5>
+            <h5 *ngIf="instructor">Overall: {{overall}} days in this month.</h5>
           </div>
         </div>
         <p-fullCalendar *ngIf="!instructor" [events]="events" [options]="options"></p-fullCalendar>
