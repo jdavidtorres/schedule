@@ -3,7 +3,7 @@
 <div class="ui-g">
   <p-panel header="Schedule" [style]="{width: '75%', margin: '0 auto'}">
     <p-tabView>
-      <p-tabPanel header="Eventos">
+      <p-tabPanel header="Events">
         <p-dropdown [options]="instructors" [(ngModel)]="instructor" optionLabel="name"
           placeholder="Select an instructor" (onChange)="getOverall(instructor.id)">
         </p-dropdown>
@@ -12,19 +12,19 @@
             <h5 *ngIf="instructor">{{instructor.name}}</h5>
           </div>
           <div class="p-field p-col-12 p-md-3">
-            <h5 *ngIf="instructor">{{instructor.lastname}}</h5>
+            <h5 *ngIf="instructor">{{instructor.surname}}</h5>
           </div>
           <div class="p-field p-col-12 p-md-3">
             <h5 *ngIf="instructor">{{instructor.birthday | date}}</h5>
           </div>
           <div class="p-field p-col-12 p-md-3">
-            <h5 *ngIf="instructor">Total agendado: {{overal}} días</h5>
+            <h5 *ngIf="instructor">Overall: {{overall}} days</h5>
           </div>
         </div>
         <p-fullCalendar *ngIf="!instructor" [events]="events" [options]="options"></p-fullCalendar>
         <p-fullCalendar *ngIf="instructor" [events]="instructor.events" [options]="options"></p-fullCalendar>
       </p-tabPanel>
-      <p-tabPanel header="Asignar Evento">
+      <p-tabPanel header="Assign Event">
         <br>
         <form #fomAssign="ngForm" (ngSubmit)="assignEvent(fomAssign)">
           <div class="p-fluid p-formgrid p-grid">
@@ -38,46 +38,46 @@
             <div class="p-field p-col-12 p-md-6">
               <span class="p-float-label">
                 <input id="title" type="text" pInputText [(ngModel)]="event.title" required name="title">
-                <label for="title">Nombre del evento</label>
+                <label for="title">Event name</label>
               </span>
             </div>
             <div class="p-field p-col-12 p-md-3">
               <span class="p-float-label">
                 <p-calendar id="startEvent" [showTime]="true" [(ngModel)]="event.start" required name="startEvent">
                 </p-calendar>
-                <label for="startEvent">Fecha inicio</label>
+                <label for="startEvent">Start Date</label>
               </span>
             </div>
             <div class="p-field p-col-12 p-md-3">
               <span class="p-float-label">
                 <p-calendar id="endEvent" [showTime]="true" [(ngModel)]="event.end" name="endEvent">
                 </p-calendar>
-                <label for="endEvent">Fecha finalizacion</label>
+                <label for="endEvent">End Date</label>
               </span>
             </div>
             <div class="p-field p-col-12">
               <span class="p-float-label">
                 <input id="description" type="text" pInputText [(ngModel)]="event.description" name="description">
-                <label for="description">Descripcion del evento</label>
+                <label for="description">Description</label>
               </span>
             </div>
-            <button pButton pRipple type="Submit" label="Guardar"></button>
+            <button pButton pRipple type="Submit" label="Save"></button>
           </div>
         </form>
         <p-table *ngIf="instructor" [value]="instructor.events" [rows]="10" [rowHover]="true" dataKey="id">
           <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
-              <h5 class="p-m-0">Eventos</h5>
+              <h5 class="p-m-0">Events</h5>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="name">Nombre evento <p-sortIcon field="name"></p-sortIcon>
+              <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon>
               </th>
-              <th pSortableColumn="description">Descripcion</th>
-              <th pSortableColumn="start">Fecha Inicio <p-sortIcon field="start"></p-sortIcon>
+              <th pSortableColumn="description">Description</th>
+              <th pSortableColumn="start">Start Date<p-sortIcon field="start"></p-sortIcon>
               </th>
-              <th pSortableColumn="end">Fecha Final <p-sortIcon field="end"></p-sortIcon>
+              <th pSortableColumn="end">End Date<p-sortIcon field="end"></p-sortIcon>
               </th>
               <th></th>
             </tr>
@@ -98,61 +98,63 @@
           </ng-template>
           <ng-template pTemplate="summary">
             <div class="p-d-flex p-ai-center p-jc-between">
-              Total eventos: {{instructor.events ? instructor.events.length : 0 }}
+              Total: {{instructor.events ? instructor.events.length : 0 }} events
             </div>
           </ng-template>
         </p-table>
-        <p-dialog [(visible)]="eventDialogTable" [style]="{width: '750px'}" header="Detalles de evento" [modal]="true"
+        <p-dialog [(visible)]="eventDialogTable" [style]="{width: '750px'}" header="Details" [modal]="true"
           styleClass="p-fluid">
           <ng-template pTemplate="content">
             <div class="p-field">
-              <label for="name">Titulo</label>
+              <label for="name">Title</label>
               <input type="text" pInputText id="title" [(ngModel)]="eventItem.title" required autofocus />
-              <small class="p-error" *ngIf="submitted && !eventItem.title">Titulo es requerido.</small>
+              <small class="p-error" *ngIf="submitted && !eventItem.title">Title is required.</small>
             </div>
             <div class="p-field">
-              <label for="description">Descripcion</label>
+              <label for="description">Description</label>
               <input type="text" pInputText id="description" [(ngModel)]="eventItem.description" />
             </div>
             <div class="p-field">
-              <label for="startEvent">Fecha inicio</label>
-              <input type="text" pInputText id="startEvent" [(ngModel)]="eventItem.start" required />
-              <small class="p-error" *ngIf="submitted && !eventItem.start">Fecha inicio es requerido.</small>
+              <label for="startEvent">Start Date</label>
+              <input type="datetime-local" pInputText id="startEvent"
+                value="{{eventItem.start|date:'yyyy-MM-ddTHH:mm'}}" required />
+              <small class="p-error" *ngIf="submitted && !eventItem.start">Start Date is required.</small>
             </div>
             <div class="p-field">
-              <label for="endEvent">Fecha finalizacion</label>
-              <input type="text" pInputText id="endEvent" [(ngModel)]="eventItem.end" required />
-              <small class="p-error" *ngIf="submitted && !eventItem.end">Fecha fin es requerido.</small>
+              <label for="endEvent">End Date</label>
+              <input type="datetime-local" pInputText id="endEvent" [ngModel]="eventItem.end|date:'yyyy-MM-ddTHH:mm'"
+                required />
+              <small class="p-error" *ngIf="submitted && !eventItem.end">End Date is required.</small>
             </div>
           </ng-template>
           <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
               (click)="hideDialog()"></button>
             <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-              (click)="saveUpdated()"></button>
+              (click)="saveUpdated(eventItem)"></button>
           </ng-template>
         </p-dialog>
       </p-tabPanel>
-      <p-tabPanel header="Instructores">
+      <p-tabPanel header="Instructors">
         <div id="form-instructor" class="card">
-          <h5>Guardar instructor</h5>
+          <h5>Add instructor</h5>
           <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-12 p-md-6">
-              <label for="instructorName" class="p-col-fixed" style="width: 100px;">Nombre</label>
+              <label for="instructorName" class="p-col-fixed" style="width: 100px;">Name</label>
               <div class="p-col">
                 <input id="instructorName" inputId="instructorName" type="text" pInputText
                   [(ngModel)]="newInstructor.name">
               </div>
             </div>
             <div class="p-field p-col-12 p-md-6">
-              <label for="instructorLastname" class="p-col-fixed" style="width: 100px;">Apellido</label>
+              <label for="instructorLastname" class="p-col-fixed" style="width: 100px;">Surname</label>
               <div class="p-col">
                 <input id="instructorLastname" inputId="instructorLastname" type="text" pInputText
-                  [(ngModel)]="newInstructor.lastname">
+                  [(ngModel)]="newInstructor.surname">
               </div>
             </div>
             <div class="p-field p-col-12 p-md-3">
-              <label for="birthday">Fecha nacimiento</label>
+              <label for="birthday">Birthday</label>
               <p-calendar [(ngModel)]="newInstructor.birthday" [monthNavigator]="true" [yearNavigator]="true"
                 yearRange="1961:2004" id="birthday" inputId="birthday" [maxDate]="maxDate"></p-calendar>
             </div>
@@ -160,22 +162,22 @@
             <div class="p-field p-col-12 p-md-3"></div>
             <div class="p-field p-col-12 p-md-3"></div>
             <div class="p-field p-col-12 p-md-3">
-              <button pButton pRipple type="Submit" (click)="saveInstructor(newInstructor)" label="Guardar"></button>
+              <button pButton pRipple type="Submit" (click)="saveInstructor(newInstructor)" label="Save"></button>
             </div>
           </div>
         </div>
         <p-table [value]="instructors">
           <ng-template pTemplate="header">
             <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Fecha nacimiento</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Birthday</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-instructor>
             <tr>
               <td>{{instructor.name}}</td>
-              <td>{{instructor.lastname}}</td>
+              <td>{{instructor.surname}}</td>
               <td>{{instructor.birthday | date}}</td>
             </tr>
           </ng-template>
