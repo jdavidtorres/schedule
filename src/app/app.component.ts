@@ -1,16 +1,12 @@
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms';
 
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-import { Instructor } from './models/instructor';
-import { InstructorService } from './services/instructor.service';
+import { Event } from './models/Event';
+import { Instructor } from './models/Instructor';
 import { EventService } from './services/event.service';
-import { Event } from './models/event';
-import { MessageService } from 'primeng/api';
-import { ConfirmationService } from 'primeng/api';
+import { InstructorService } from './services/instructor.service';
 
 @Component({
   selector: 'app-root',
@@ -56,15 +52,7 @@ export class AppComponent implements OnInit {
     this.eventServices.findAll().subscribe(events => {
       this.events = events;
     });
-    this.options = {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      height: 700,
-      header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      }
-    };
+
     this.instructorService.findAll().subscribe(instructors => {
       this.instructors = instructors;
     });
