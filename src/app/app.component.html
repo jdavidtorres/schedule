@@ -79,17 +79,17 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="name">Name<p-sortIcon
+              <th scope="col" pSortableColumn="name">Name<p-sortIcon
                   field="name"></p-sortIcon>
               </th>
-              <th pSortableColumn="description">Description</th>
-              <th pSortableColumn="start">Start Date<p-sortIcon
+              <th scope="col" pSortableColumn="description">Description</th>
+              <th scope="col" pSortableColumn="start">Start Date<p-sortIcon
                   field="start"></p-sortIcon>
               </th>
-              <th pSortableColumn="end">End Date<p-sortIcon
+              <th scope="col" pSortableColumn="end">End Date<p-sortIcon
                   field="end"></p-sortIcon>
               </th>
-              <th></th>
+              <th scope="col"></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-eventItem>
@@ -192,9 +192,9 @@
         <p-table [value]="instructors">
           <ng-template pTemplate="header">
             <tr>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Birthday</th>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Birthday</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-instructor>
