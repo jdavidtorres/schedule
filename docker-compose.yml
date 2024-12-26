@@ -1,0 +1,42 @@
+services:
+  database:
+    container_name: schedule-database
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=schedule-database
+    ports:
+      - 3306:3306
+    volumes:
+      - local:/var/lib/mysql
+    networks:
+      - api-database
+  api:
+    container_name: schedule-api
+    build: ../backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    networks:
+      - api-database
+      - api-frontend
+  frontend:
+    container_name: schedule-frontend
+    build: ../frontend
+    ports:
+      - 4200:4200
+    depends_on:
+      - api
+    networks:
+      - api-database
+      - api-frontend
+networks:
+  api-database:
+    driver: bridge
+  api-frontend:
+    driver: bridge
+volumes:
+  local:
