@@ -21,4 +21,4 @@ jobs:
       with:
         gradle-version: 8.6
         arguments: clean assemble
-        working-directory: backend
+        build-root-directory: backend
