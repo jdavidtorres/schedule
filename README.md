@@ -1,7 +1,8 @@
 # schedule
 
-[![Java CI with Gradle](https://github.com/jdavidtorres/schedule/actions/workflows/build.yml/badge.svg)](https://github.com/jdavidtorres/schedule/actions/workflows/build.yml)
-[![CodeQL](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analisys.yml/badge.svg)](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analisys.yml)
+[![Java CI with Gradle](https://github.com/jdavidtorres/schedule/actions/workflows/backend-build.yml/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/backend-build.yml)
+[![Frontend Build](https://github.com/jdavidtorres/schedule/actions/workflows/frontend-build.yml/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/frontend-build.yml)
+[![CodeQL](https://github.com/jdavidtorres/schedule/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/github-code-scanning/codeql)
 
 ## docker-compose
 
