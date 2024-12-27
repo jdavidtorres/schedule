@@ -1,10 +1,10 @@
 # schedule
 
-[![Java CI with Gradle](https://github.com/jdavidtorres/training-schedule/actions/workflows/build.yml/badge.svg)](https://github.com/jdavidtorres/training-schedule/actions/workflows/build.yml)
-[![CodeQL](https://github.com/jdavidtorres/training-schedule/actions/workflows/codeql-analisys.yml/badge.svg)](https://github.com/jdavidtorres/training-schedule/actions/workflows/codeql-analisys.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jdavidtorres_training-schedule&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jdavidtorres_training-schedule)
+[![Java CI with Gradle](https://github.com/jdavidtorres/schedule/actions/workflows/build.yml/badge.svg)](https://github.com/jdavidtorres/schedule/actions/workflows/build.yml)
+[![CodeQL](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analisys.yml/badge.svg)](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analisys.yml)
 
 ## docker-compose
+
 ```bash
 docker-compose up -d
 ```
