@@ -1,12 +1,12 @@
 services:
   database:
     container_name: schedule-database
-    image: mysql:latest
+    image: mysql:9
     restart: always
     environment:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=schedule-database
+      - MYSQL_DATABASE=schedule
     ports:
       - 3306:3306
     volumes:
@@ -15,9 +15,9 @@ services:
       - api-database
   api:
     container_name: schedule-api
-    build: ../backend
+    build: /backend
     ports:
-      - 8080:8080
+      - 8090:8090
     depends_on:
       - database
     networks:
@@ -25,7 +25,7 @@ services:
       - api-frontend
   frontend:
     container_name: schedule-frontend
-    build: ../frontend
+    build: /frontend
     ports:
       - 4200:4200
     depends_on:
