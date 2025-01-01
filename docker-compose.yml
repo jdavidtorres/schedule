@@ -31,7 +31,6 @@ services:
     depends_on:
       - api
     networks:
-      - api-database
       - api-frontend
 networks:
   api-database:
