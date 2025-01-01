@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,8 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,8 +30,7 @@ import java.util.List;
 public class InstructorEntity {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", unique = true, nullable = false, updatable = false)
     private String id;
 
@@ -51,8 +49,4 @@ public class InstructorEntity {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<EventEntity> events = new ArrayList<>();
-
-    public void removeEvent(EventEntity event) {
-        this.events.remove(event);
-    }
 }
