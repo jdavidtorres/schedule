@@ -1,2 +1,9 @@
 @import "primeflex/primeflex.css";
+@import "primeflex/themes/primeone-light.css";
+@import "primeflex/themes/primeone-dark.css";
 @import "primeicons/primeicons.css";
+
+html {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+	  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
