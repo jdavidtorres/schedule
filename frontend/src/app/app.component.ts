@@ -32,8 +32,8 @@ import { StyleClassModule } from 'primeng/styleclass';
 	imports: [
 		FormsModule,
 		CommonModule,
-		HttpClientModule,
 		StyleClassModule,
+		HttpClientModule,
 		ToastModule,
 		InputTextModule,
 		ConfirmDialogModule,
@@ -47,7 +47,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 		DialogModule,
 		ButtonModule,
 	],
-	providers: [MessageService, ConfirmationService],
+	providers: [MessageService, ConfirmationService, EventService, InstructorService],
 })
 export class AppComponent implements OnInit {
 	title = 'Schedule';
@@ -81,7 +81,12 @@ export class AppComponent implements OnInit {
 
 	maxDate: Date;
 
-	constructor(private instructorService: InstructorService, private eventServices: EventService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+	constructor(
+		private instructorService: InstructorService,
+		private eventServices: EventService,
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService
+	) {}
 
 	ngOnInit(): void {
 		this.eventServices.findAll().subscribe((events) => {
