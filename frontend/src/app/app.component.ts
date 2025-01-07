@@ -4,16 +4,9 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputMaskModule } from 'primeng/inputmask';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MenubarModule } from 'primeng/menubar';
-import { MessageModule } from 'primeng/message';
-import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TabsModule } from 'primeng/tabs';
@@ -22,21 +15,25 @@ import { Event } from './models/Event';
 import { Instructor } from './models/Instructor';
 import { EventService } from './services/event.service';
 import { InstructorService } from './services/instructor.service';
+
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DatePickerModule } from 'primeng/datepicker';
 import { PanelModule } from 'primeng/panel';
+import { CommonModule } from '@angular/common';
+import { StyleClassModule } from 'primeng/styleclass';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	imports: [
 		FormsModule,
-		BrowserModule,
-		BrowserAnimationsModule,
+		CommonModule,
 		HttpClientModule,
+		StyleClassModule,
 		ToastModule,
 		InputTextModule,
 		ConfirmDialogModule,
@@ -50,8 +47,7 @@ import { PanelModule } from 'primeng/panel';
 		DialogModule,
 		ButtonModule,
 	],
-	styleUrls: ['./app.component.css'],
-	providers: [MessageService, ConfirmationService],
+	providers: [MessageService, ConfirmationService]
 })
 export class AppComponent implements OnInit {
 	title = 'Schedule';
@@ -85,12 +81,7 @@ export class AppComponent implements OnInit {
 
 	maxDate: Date;
 
-	constructor(
-		private instructorService: InstructorService,
-		private eventServices: EventService,
-		private messageService: MessageService,
-		private confirmationService: ConfirmationService
-	) {}
+	constructor(private instructorService: InstructorService, private eventServices: EventService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
 	ngOnInit(): void {
 		this.eventServices.findAll().subscribe((events) => {
