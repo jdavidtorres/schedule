@@ -47,7 +47,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 		DialogModule,
 		ButtonModule,
 	],
-	providers: [MessageService, ConfirmationService]
+	providers: [MessageService, ConfirmationService],
 })
 export class AppComponent implements OnInit {
 	title = 'Schedule';
