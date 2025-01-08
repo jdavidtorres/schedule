@@ -1,5 +1,4 @@
 HELP.md
-.gradle
 data/
 .DS_Store
 .env
@@ -20,7 +19,6 @@ bin/
 *.iml
 *.ipr
 out/
-build/
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +29,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Gradle ###
+.gradle
+/build
+gradlew
+gradlew.bat
