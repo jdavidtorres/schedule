@@ -2,7 +2,7 @@
 
 [![Backend Build](https://github.com/jdavidtorres/schedule/actions/workflows/backend-build.yml/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/backend-build.yml)
 [![Frontend Build](https://github.com/jdavidtorres/schedule/actions/workflows/frontend-build.yml/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/frontend-build.yml)
-[![CodeQL](https://github.com/jdavidtorres/schedule/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/github-code-scanning/codeql)
+[![CodeQL Analysis](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/jdavidtorres/schedule/actions/workflows/codeql-analysis.yml)
 
 ## docker-compose
 
