@@ -25,24 +25,24 @@ import java.util.Date;
 @AllArgsConstructor
 public class EventEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", unique = true, nullable = false, updatable = false)
-    private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name = "id", unique = true, nullable = false, updatable = false)
+	private String id;
 
-    @NotEmpty
-    @Column(nullable = false)
-    private String title;
+	@NotEmpty
+	@Column(nullable = false)
+	private String title;
 
-    @NotNull
-    @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date start;
+	@NotNull
+	@Column(name = "start_date", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date start;
 
-    @NotNull
-    @Column(name = "end_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date end;
+	@NotNull
+	@Column(name = "end_date", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date end;
 
-    private String description;
+	private String description;
 }

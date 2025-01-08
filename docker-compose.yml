@@ -12,8 +12,8 @@ services:
       - local:/var/lib/mysql
     networks:
       - api-database
-  api:
-    container_name: schedule-api
+  backend:
+    container_name: schedule-backend
     build: /backend
     ports:
       - 8090:8090
@@ -34,7 +34,7 @@ services:
     ports:
       - 4200:80
     depends_on:
-      - api
+      - backend
     networks:
       - api-frontend
 networks:

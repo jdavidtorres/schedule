@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public interface IInstructorServices {
 
-    List<InstructorEntity> findAllInstructors();
+	List<InstructorEntity> findAllInstructors();
 
-    InstructorEntity save(InstructorEntity instructor);
+	InstructorEntity save(InstructorEntity instructor);
 
-    InstructorEntity assignEvent(InstructorEntity instructorWithEvent);
+	InstructorEntity assignEvent(InstructorEntity instructorWithEvent);
 
-    Optional<InstructorEntity> findInstructorById(String idInstructor);
+	Optional<InstructorEntity> findInstructorById(String idInstructor);
 
-    Long overallDuration(InstructorEntity instructor);
+	Long overallDuration(InstructorEntity instructor);
 }

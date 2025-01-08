@@ -11,8 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class Event {
 
-    private String title;
-    private Date start;
-    private Date end;
-    private String description;
+	private String title;
+	private Date start;
+	private Date end;
+	private String description;
 }

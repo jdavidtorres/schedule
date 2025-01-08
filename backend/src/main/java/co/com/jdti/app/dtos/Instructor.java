@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Instructor {
 
-    private String name;
-    private String surname;
-    private Date birthday;
+	private String name;
+	private String surname;
+	private Date birthday;
 }

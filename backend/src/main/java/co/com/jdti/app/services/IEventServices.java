@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface IEventServices {
 
-    List<EventEntity> findAll();
+	List<EventEntity> findAll();
 
-    Optional<EventEntity> findEventById(String idEvent);
+	Optional<EventEntity> findEventById(String idEvent);
 
-    EventEntity edit(EventEntity event);
+	EventEntity edit(EventEntity event);
 
-    void delete(String idEvent);
+	void delete(String idEvent);
 }

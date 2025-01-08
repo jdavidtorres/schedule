@@ -2,6 +2,7 @@ HELP.md
 .gradle
 data/
 .DS_Store
+.env
 
 ### STS ###
 .apt_generated

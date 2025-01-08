@@ -29,24 +29,25 @@ import java.util.List;
 @AllArgsConstructor
 public class InstructorEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", unique = true, nullable = false, updatable = false)
-    private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name = "id", unique = true, nullable = false, updatable = false)
+	private String id;
 
-    @NotEmpty
-    @Column(nullable = false)
-    private String name;
+	@NotEmpty
+	@Column(nullable = false)
+	private String name;
 
-    @NotEmpty
-    @Column(nullable = false)
-    private String surname;
+	@NotEmpty
+	@Column(nullable = false)
+	private String surname;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date birthday;
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
+	private Date birthday;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<EventEntity> events = new ArrayList<>();
+	@Builder.Default
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<EventEntity> events = new ArrayList<>();
 }
