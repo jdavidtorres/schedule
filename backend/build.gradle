@@ -8,6 +8,11 @@ group = 'co.com.jdti.app'
 version = '0.0.5'
 compileJava.options.encoding = 'UTF-8'
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
 jar {
     enabled = false
 }
