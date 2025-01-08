@@ -1,9 +1,13 @@
-FROM node:lts-bullseye AS build
+FROM node:lts-alpine AS build
 WORKDIR /app
-COPY package*.json ./
+COPY ./ /app
 RUN npm install
-COPY . .
-RUN npm run build --prod
+RUN npm run build --omit=dev
 
-FROM nginx:latest
-COPY --from=build /app/dist/schedule /usr/share/nginx/html
+FROM nginx:1-alpine-slim
+RUN apk update
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
