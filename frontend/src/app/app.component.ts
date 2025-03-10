@@ -4,11 +4,11 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { TableModule } from 'primeng/table';
-import { TabViewModule } from 'primeng/tabview';
 import { TabsModule } from 'primeng/tabs';
 import { NgForm } from '@angular/forms';
 import { Event } from './models/Event';
@@ -22,9 +22,9 @@ import { FormsModule } from '@angular/forms';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DatePickerModule } from 'primeng/datepicker';
-import { PanelModule } from 'primeng/panel';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
+import { CardModule } from 'primeng/card';
 
 @Component({
 	selector: 'app-root',
@@ -38,14 +38,14 @@ import { StyleClassModule } from 'primeng/styleclass';
 		InputTextModule,
 		ConfirmDialogModule,
 		DatePickerModule,
-		PanelModule,
 		TabsModule,
-		TabViewModule,
 		DropdownModule,
+		SelectModule,
 		CalendarModule,
 		TableModule,
 		DialogModule,
 		ButtonModule,
+		CardModule,
 	],
 	providers: [MessageService, ConfirmationService, EventService, InstructorService],
 })
@@ -82,10 +82,10 @@ export class AppComponent implements OnInit {
 	maxDate: Date;
 
 	constructor(
-		private instructorService: InstructorService,
-		private eventServices: EventService,
-		private messageService: MessageService,
-		private confirmationService: ConfirmationService
+		private readonly instructorService: InstructorService,
+		private readonly eventServices: EventService,
+		private readonly messageService: MessageService,
+		private readonly confirmationService: ConfirmationService
 	) {}
 
 	ngOnInit(): void {

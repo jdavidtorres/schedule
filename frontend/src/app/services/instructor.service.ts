@@ -10,7 +10,7 @@ import { Instructor } from '../models/Instructor';
 	providedIn: 'root',
 })
 export class InstructorService {
-	baseEndpoint = 'http://localhost:8090/api/instructor';
+	baseEndpoint = 'http://localhost:8090/api/instructors';
 
 	constructor(private http: HttpClient) {}
 

@@ -2,12 +2,12 @@ services:
   database:
     container_name: schedule-database
     image: mysql:9
-    restart: always
+    restart: no
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=schedule
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - local:/var/lib/mysql
     networks:
@@ -16,7 +16,7 @@ services:
     container_name: schedule-backend
     build: /backend
     ports:
-      - 8090:8090
+      - "8090:8090"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/schedule
       - SPRING_DATASOURCE_USERNAME=root
@@ -32,7 +32,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - 4200:80
+      - "4200:80"
     depends_on:
       - backend
     networks:
