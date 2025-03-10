@@ -5,3 +5,9 @@
 ### VS Code ###
 .vscode/
 .github/copilot-instructions.md
+
+### Gradle ###
+.gradle
+/build
+gradlew
+gradlew.bat
