@@ -1,3 +1,7 @@
+### IDEA ###
+.idea/
+.run/
+
 ### VS Code ###
 .vscode/
 .github/copilot-instructions.md
