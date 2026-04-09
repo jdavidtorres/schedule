@@ -37,6 +37,7 @@
 		"karma-coverage": "~2",
 		"karma-jasmine": "~5",
 		"karma-jasmine-html-reporter": "~2",
-		"typescript": "~5"
+		"typescript": "~5",
+		"tar": "~7"
 	}
 }
